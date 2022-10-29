@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/addName}" th:object="${test}">
+    <div class="test-area">
+        <label>名前</label>
+        <input type="text"  th:field="*{name}"><br>
+        <input type="submit" value="追加"/>
+    </div>
+</form>
+</body>
+</html>
