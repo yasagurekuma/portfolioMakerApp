@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="userAdd">
+<div class="mainContent">
+    <h2>ユーザー新規登録</h2>
+    <form method="post" th:action="@{/newUser}" th:object="${formModel}" >
+        <ul class="errorMessage">
+            <li th:each="errorMessage : ${errorMessages}" th:text="${errorMessage}"></li>
+        </ul>
+        <div>
+            <input type="text" th:field="*{name}" placeholder="お名前(氏名) 例)山田 太郎"><br>
+        </div>
+        <div>
+            <input type="text" th:field="*{userName}" placeholder="ユーザー名"><br>
+        </div>
+        <div>
+            <input type="email" th:field="*{mailAddress}" placeholder="メールアドレス 例)〇〇〇@gmail.jp"><br>
+        </div>
+        <div>
+            <input type="password" th:field="*{password}" placeholder="パスワード(半角・英数字 6文字以上20文字以内)"><br>
+        </div>
+        <div>
+            <input type="password" name="confirmPassword" placeholder="確認パスワード(半角・英数字　6文字以上20文字以内)"><br>
+        </div>
+        <label>生年月日</label><br>
+            <input name="birth" th:value="${dateOfBirth}" type="date"/><br>
+        <div>
+            <div>
+                <a th:href="@{/}">
+                    <button type="button" class="button">戻る</button>
+                </a>
+            </div>
+            <div>
+                <input type="submit" value="登録" class="button"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
