@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="jp">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/login}" th:object="${formModel}">
+    <ul>
+        <li th:each="errorMessage : ${errorMessages}">
+            <span th:text="${errorMessage}" style="color:red;" />
+        </li>
+    </ul>
+    <div class="form-item">
+        <input th:field="*{mailAddress}" name="email" required="required" placeholder="Email Address"/>
+    </div>
+    <div class="form-item">
+        <input th:field="*{password}"  type="password" name="password" required="required" placeholder="Password"/>
+    </div>
+    <div class="button-panel">
+        <input type="submit" class="button" title="ログイン" value="ログイン"/>
+    </div>
+    <div class="signupLink">
+        <a href="userAdd">新規ユーザー登録はこちら</a>
+    </div>
+</form>
+</body>
+</html>

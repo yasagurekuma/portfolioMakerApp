@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class SampleController {
     @Autowired
     TestService testService;
+    @Autowired
+    HttpSession session;
 
     @GetMapping
     public ModelAndView top() {
