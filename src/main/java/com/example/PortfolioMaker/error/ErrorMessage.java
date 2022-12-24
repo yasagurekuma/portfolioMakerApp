@@ -16,5 +16,6 @@ public class ErrorMessage {
     public static String E1013 = "パスワードは6文字以上、20文字以上で入力してください";
     public static String E1014 = "パスワードと確認パスワードが一致しません";
     public static String E1015 = "チェックインの日付を入力してください";
-    public static String E1016 = "チェックアウトの日付を入力してください";
+    public static String E1016 = "確認パスワードを入力していください";
+    public static String E1017 = "メールアドレスが重複しています。";
 }

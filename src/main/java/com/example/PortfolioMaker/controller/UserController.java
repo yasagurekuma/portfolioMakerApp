@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.PortfolioMaker.error.ErrorMessage.*;
 import static java.lang.String.valueOf;
 
 @Controller
@@ -58,13 +59,20 @@ public class UserController {
         userForm.setDateOfBirth(birthDay);
 
         if (confirmPassword == null) {
-            errorMessages.add("失敗");
+            errorMessages.add(E1016);
             mav.addObject("errorMessages", errorMessages);
             mav.setViewName("/userAdd");
             return mav;
         }
         // 入力パスワードと確認用パスワードが一致している場合
         if (userForm.getPassword().equals(confirmPassword)) {
+            String check = userService.CheckUser(userForm);
+            if (check.equals("重複")){
+                errorMessages.add(E1017);
+                mav.addObject("errorMessages", errorMessages);
+                mav.setViewName("/userAdd");
+                return mav;
+            }
             // ユーザー情報をテーブルへ格納
             userService.saveUser(userForm);
         }
@@ -77,7 +85,6 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         //編集するユーザー（ログインしているユーザー）のIDを取得する。
         Integer userId = (Integer) session.getAttribute("userId");
-//        Integer userId = 6;
         UserForm userForm = userService.editUser(userId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String birthDay = sdf.format(userForm.getDateOfBirth());
